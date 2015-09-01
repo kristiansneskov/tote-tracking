@@ -20,11 +20,25 @@ var dateArray = reggie.exec(elm[0]);
 //  console.log(dateArray);
 var item = {timestamp:d.getTime()+'000000', tote:elm[1], element:elm[2]};
 console.log(item);
-  
+ sendRequest(item); 
 });
 });
 
+function sendRequest(json) {
 
+request({
+url: 'http://178.62.223.30:8086/write?db=spongy',
+method: 'POST',
+body: 'trackinggert,tote='+json.tote+',element='+json.element+' value=1 '+json.timestamp
+}, function(error,response,body) {
+if (error) {
+  console.log(error);
+} else {
+  console.log(response.statusCode, body);
+}
+});
+
+/*
 request({
 url: 'http://178.62.223.30:8086/write?db=spongy',
 method: 'POST',
@@ -35,7 +49,10 @@ if (error) {
 } else {
   console.log(response.statusCode, body);
 }
-
 });
+*/
+
+}
+
 
 
