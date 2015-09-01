@@ -1,0 +1,24 @@
+{
+  "name": "tracking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "parseLogs.js",
+  "dependencies": {
+    "csv-parse": "^1.0.0",
+    "request": "^2.61.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristiansneskov/tote-tracking.git"
+  },
+  "author": "kristiansneskov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kristiansneskov/tote-tracking/issues"
+  },
+  "homepage": "https://github.com/kristiansneskov/tote-tracking#readme"
+}
