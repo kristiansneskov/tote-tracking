@@ -6,9 +6,6 @@ var counter = 0;
 enterRequestLoop(counter);
 
 function enterRequestLoop(count) {
-var t = randomInt(2,7);
-console.log('sleeping ' + t + ' sec') ;
-sleep.sleep(t);
 request({
 url: 'http://178.62.223.30:8086/write?db=spongy',
 method: 'POST',
@@ -21,8 +18,12 @@ if (error) {
 if (count == 100) { 
   return;
 } else {
+var t = randomInt(2,7);
+console.log('sleeping ' + t + ' sec') ;
+setTimeout(function() {
 	var newCount = count + 1;
 	enterRequestLoop(newCount);
+}, t*1000);
 }
 }
 });
