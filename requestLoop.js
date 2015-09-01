@@ -1,5 +1,4 @@
 var request = require('request');
-var sleep = require('sleep');
 
 var counter = 0;
 
@@ -18,7 +17,7 @@ if (error) {
 if (count == 100) { 
   return;
 } else {
-var t = randomInt(2,7);
+var t = randomInt(1,5);
 console.log('sleeping ' + t + ' sec') ;
 setTimeout(function() {
 	var newCount = count + 1;
