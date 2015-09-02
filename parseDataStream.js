@@ -37,7 +37,7 @@ body: 'trackingDUS,tote='+json.tote+',element='+json.element+' value=1 '+json.ti
 if (error) {
   console.log(error);
 } else {
-  console.log(response.statusCode, body);
+  //console.log(response.statusCode, body);
 }
 });
 
