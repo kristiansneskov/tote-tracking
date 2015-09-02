@@ -2,7 +2,12 @@ var parse = require('csv-parse');
 var fs = require('fs');
 var request = require('request');
 
-var content = fs.readFileSync('./tracking_gsa63_wna120.log');
+if (process.argv.length != 3) {
+  console.log("Please specify name of log to parse");
+  return;
+}
+  
+var content = fs.readFileSync('./'+process.argv[2]);
 
 var count = content.length;
 
@@ -29,7 +34,7 @@ function sendRequest(json) {
 request({
 url: 'http://178.62.223.30:8086/write?db=spongy',
 method: 'POST',
-body: 'trackinggert,tote='+json.tote+',element='+json.element+' value=1 '+json.timestamp
+body: 'trackingDUS,tote='+json.tote+',element='+json.element+' value=1 '+json.timestamp
 }, function(error,response,body) {
 if (error) {
   console.log(error);
