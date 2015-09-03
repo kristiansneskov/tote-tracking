@@ -32,7 +32,7 @@ function sendRequest(json) {
 request({
 url: 'http://178.62.223.30:8086/write?db=spongy',
 method: 'POST',
-body: 'trackingDUS,tote='+json.tote+',element='+json.element//+' value=1 '+json.timestamp
+body: 'trackingDUS,tote='+json.tote+',element='+json.element'//+' value=1 '+json.timestamp
 }, function(error,response,body) {
 if (error) {
   console.log(error);
