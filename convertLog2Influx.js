@@ -31,7 +31,7 @@ new lazy(fs.createReadStream('./'+process.argv[2]))
 
 function writeToFile(json) {
  // fs.appendFile('./influx.data',
-   ws.write('trackingDUS,tote='+json.tote+',line='+json.line+',element='+json.element+' value=1 '+json.timestamp +'\n')
+   ws.write('tracking'+json.line+',tote='+json.tote+',line='+json.line+',element='+json.element+' value=1 '+json.timestamp +'\n')
   //  ,function(err) {
   //    if (err) {
   //      console.log(err)
