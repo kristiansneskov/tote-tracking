@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES=xaa*
+FILES=xab*
 COUNT=0
 for f in $FILES
 do
@@ -8,5 +8,5 @@ do
   sleep 10
   curl -X POST 'http://localhost:8086/write?db=crisplant' --data-binary @$f
 #  nodejs parseDataStream.js $f
-  COUNT = $((COUNT+1))
+  ((COUNT=COUNT+1))
 done
