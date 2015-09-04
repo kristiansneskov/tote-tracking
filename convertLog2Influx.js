@@ -19,7 +19,8 @@ new lazy(fs.createReadStream('./'+process.argv[2]))
       var d = new Date("20"+dateArray[1],dateArray[2]-1,dateArray[3],dateArray[4],dateArray[5],dateArray[6],dateArray[7]);
 //console.log(d);
 //  console.log(dateArray);
-      var item = {timestamp:d.getTime()+'000000', tote:elm[1], element:elm[2]};
+      var lineElement = elm[2].split(".");
+      var item = {timestamp:d.getTime()+'000000', tote:elm[1], line: lineElement[0], element:lineElement[1]};
     //console.log(item);
       writeToFile(item);
     });
@@ -30,7 +31,7 @@ new lazy(fs.createReadStream('./'+process.argv[2]))
 
 function writeToFile(json) {
  // fs.appendFile('./influx.data',
-   ws.write('trackingDUS,tote='+json.tote+',element='+json.element+' value=1 '+json.timestamp +'\n')
+   ws.write('trackingDUS,tote='+json.tote+',line='+json.line+',element='+json.element+' value=1 '+json.timestamp +'\n')
   //  ,function(err) {
   //    if (err) {
   //      console.log(err)
