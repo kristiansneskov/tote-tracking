@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES=xa*
+FILES=xaa*
 COUNT=0
 for f in $FILES
 do
