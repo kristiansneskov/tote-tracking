@@ -13,9 +13,11 @@ new lazy(fs.createReadStream('./'+process.argv[2]))
 .forEach(function(line) {
   parse(line,function(err,output) {
   output.forEach(function(elm) {
-      var reggie = /(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{4})/;
+//console.log(elm);
+      var reggie = /(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{3})/;
+
       var dateArray = reggie.exec(elm[0]);
-//console.log(dateArray[0]+"-"+ dateArray[1]+"-"+dateArray[2]);
+//console.log(dateArray);
       var d = new Date("20"+dateArray[1],dateArray[2]-1,dateArray[3],dateArray[4],dateArray[5],dateArray[6],dateArray[7]);
 //console.log(d);
 //  console.log(dateArray);
