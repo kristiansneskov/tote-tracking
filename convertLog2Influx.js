@@ -22,18 +22,25 @@ new lazy(fs.createReadStream('./'+process.argv[2]))
 //console.log(d);
 //  console.log(dateArray);
       var lineElement = elm[2].split(".");
-      var item = {timestamp:d.getTime()+'000000', tote:elm[1], line: lineElement[0], element:lineElement[1]};
+      var itemId = elm[3];
+      var item;
+      if (itemId === undefined) {
+        item = {timestamp:d.getTime()+'000000', tote:elm[1], line: lineElement[0], element:lineElement[1]};
+        ws.write('emptytote,tote='+item.tote+',line='+item.line+',element='+item.element+' value=1 '+item.timestamp +'\n')
+      } else {
+        item = {timestamp:d.getTime()+'000000', tote:elm[1], line: lineElement[0], element:lineElement[1], item:itemId};
+        ws.write('fulltote,tote='+item.tote+',line='+item.line+',element='+item.element+',item='+item.item+' value=1 '+item.timestamp +'\n')
+      }
     //console.log(item);
-      writeToFile(item);
     });
   })
 })
 
 //body: 'trackingDUS,tote='+json.tote+',element='+json.element+' value=1 '+json.timestamp
 
-function writeToFile(json) {
+function writeToFile(json,measurement) {
  // fs.appendFile('./influx.data',
-   ws.write('tracking'+json.line+',tote='+json.tote+',line='+json.line+',element='+json.element+' value=1 '+json.timestamp +'\n')
+//   ws.write('tracking'+json.line+',tote='+json.tote+',line='+json.line+',element='+json.element+' value=1 '+json.timestamp +'\n')
   //  ,function(err) {
   //    if (err) {
   //      console.log(err)
