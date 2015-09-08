@@ -7,6 +7,8 @@ if (process.argv.length != 3) {
   console.log("Please specify name of log to parse");
   return;
 }
+var measurementName = process.argv[2].split('/')[1];
+//console.log(measurementName);
 var count = 0;
 new lazy(fs.createReadStream('./'+process.argv[2]))
 .lines
@@ -29,7 +31,12 @@ new lazy(fs.createReadStream('./'+process.argv[2]))
         ws.write('emptytote,tote='+item.tote+',line='+item.line+',element='+item.element+' value=1 '+item.timestamp +'\n')
       } else {
         item = {timestamp:d.getTime()+'000000', tote:elm[1], line: lineElement[0], element:lineElement[1], item:itemId};
-        ws.write('fulltote,tote='+item.tote+',line='+item.line+',element='+item.element+',item='+item.item+' value=1 '+item.timestamp +'\n')
+        if (measurementName === 'inducted.csv') {
+          ws.write('inducted,tote='+item.tote+',line='+item.line+',element='+item.element+',item='+item.item+' value=1 '+item.timestamp +'\n') 
+	}
+ 	else {
+          ws.write('fulltote,tote='+item.tote+',line='+item.line+',element='+item.element+',item='+item.item+' value=1 '+item.timestamp +'\n') 
+	}
       }
     //console.log(item);
     });
